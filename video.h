@@ -1,6 +1,7 @@
 #ifndef VIDEO_H
 #define VIDEO_H
 
+
 #include"Base.h"
 
 class video : public Base{
@@ -25,7 +26,10 @@ class video : public Base{
   virtual void print(ostream & s) const{
     Base::print(s);
     s << get_duration() << ' ' ;
-    // cout<<"duration: "<<duration<<endl;
+
+    #if COUT == 1
+      cout<<"duration : "<<duration<<endl;
+    #endif
   }  
 
   virtual void play() const{ 
@@ -44,3 +48,20 @@ class video : public Base{
 };
 
 #endif
+
+
+/* #if DLEVEL > 5 */
+/*     #define SIGNAL  1 */
+/*     #if STACKUSE == 1 */
+/*         #define STACK   200 */
+/*     #else */
+/*         #define STACK   100 */
+/*     #endif */
+/* #else */
+/*     #define SIGNAL  0 */
+/*     #if STACKUSE == 1 */
+/*         #define STACK   100 */
+/*     #else */
+/*         #define STACK   50 */
+/*     #endif */
+/* #endif */

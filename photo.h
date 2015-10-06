@@ -27,9 +27,14 @@ public:
   virtual float get_width()  const { return width; }
   
   virtual void print(ostream & s) const {
+
     Base::print(s);
     s << get_length() << ' ' << get_width()  << ' ';
-    // cout<<"length: "<<length<<endl;
+
+    #if COUT == 1
+    cout<<"length   : "<< get_length() << endl;
+    cout<<"width    : "<< get_width() << endl;
+    #endif
   }
   
   virtual string get_file_name() const { return Base::get_file_name(); }

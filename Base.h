@@ -1,6 +1,12 @@
 #ifndef BASE_H
 #define BASE_H
 
+// '1' for cout, '0' for sstream
+#ifndef COUT
+#define COUT 0
+#endif
+
+
 #include<string>
 #include<iostream>
 using namespace std;
