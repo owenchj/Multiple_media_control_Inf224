@@ -1,6 +1,6 @@
 Base.cpp
 Base.h
-film.cpp
+film.h
 group.cpp
 main.cpp
 photo.h
