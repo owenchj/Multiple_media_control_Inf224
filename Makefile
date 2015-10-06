@@ -14,7 +14,7 @@ PROG = myprog
 #
 # Fichiers sources (NE PAS METTRE les .h ni les .o seulement les .cpp)
 #
-SOURCES =  main.cpp Base.cpp 
+SOURCES = MyClass.cpp main.cpp
 
 #
 # Fichiers objets (ne pas modifier sauf si l'extension n'est pas .cpp)
@@ -63,7 +63,6 @@ ${PROG}: depend-${PROG} ${OBJETS}
 clean:
 	-@$(RM) *.o depend-${PROG} core 1>/dev/null 2>&1
 	-@$(RM) -rf *~ *#
-	-@$(RM) -rf myprog
 clean-all: clean
 	-@$(RM) ${PROG} 1>/dev/null 2>&1
 

@@ -3,3 +3,8 @@
 *.o
 myprog
 exec
+*.config
+*.creator
+*.creator.user
+*.includes
+
