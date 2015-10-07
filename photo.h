@@ -12,7 +12,7 @@ public:
 
  photo() : length(0.0), width(0.0) {}
 
- photo(string obj_name, string date, string file_name, float length, float width) : Base(obj_name, date, file_name), length(length), width(width) {}
+ photo(string obj_name, string date, string file_name, float length = 0, float width = 0) : Base(obj_name, date, file_name), length(length), width(width) {}
 
   virtual ~photo(){}
 

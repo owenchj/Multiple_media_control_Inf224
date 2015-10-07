@@ -10,7 +10,7 @@ class video : public Base{
  public: 
  video() : duration(0) {}
 
- video(string obj_name, string date, string file_name, int duration) : Base(obj_name, date, file_name), duration(duration) {}
+ video(string obj_name, string date, string file_name, int duration = 0) : Base(obj_name, date, file_name), duration(duration) {}
 
   virtual ~video(){}
 
@@ -28,12 +28,12 @@ class video : public Base{
     s << get_duration() << ' ' ;
 
     #if COUT == 1
-      cout<<"duration : "<<duration<<endl;
+      cout<<"duration : "<< duration << endl;
     #endif
   }  
 
   virtual void play() const{ 
-    string player = "mplayer ";
+    string player = "mpv ";
     string suffix = " &";
     string str = player + get_file_name() + suffix;
     system(str.c_str());

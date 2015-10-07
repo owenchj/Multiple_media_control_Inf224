@@ -13,8 +13,8 @@ void Base::set(string obj_name, string date, string file_name){
 }  
 
 string  Base::get_obj_name()  const { return obj_name; }
-string  Base::get_date()      const { return date; }
-string  Base::get_file_name() const { return file_name; }
+string  Base::get_date()      const { return date;     }
+string  Base::get_file_name() const { return file_name;}
 
 void Base::print(ostream & s) const {
   s << get_obj_name() <<' '<< get_date() <<' '<< get_file_name() << ' ';

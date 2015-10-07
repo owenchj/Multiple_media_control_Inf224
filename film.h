@@ -7,16 +7,16 @@ class film : public video{
 
  private:
   unsigned int num_chapiter;
-  int *tab; 
+  int const *tab; 
 
  public:
-  film(){}
+ film():num_chapiter(),tab(NULL){}
 
   film (string obj_name, string date, string file_name, int duration, unsigned int num_chapiter = 0, int *tab = NULL) : video(obj_name, date, file_name, duration), num_chapiter(num_chapiter), tab(tab){}
 
-  ~film(){delete []tab;}
+  ~film(){}
 
-  virtual void set(string obj_name, string date, string file_name, int duration, unsigned int num_chapiter, int *tab){ 
+  virtual void set(string obj_name, string date, string file_name, int duration, unsigned int num_chapiter, int const *tab){ 
     video::set(obj_name, date, file_name, duration);
     this->tab = tab;
     this->num_chapiter = num_chapiter;
@@ -24,7 +24,7 @@ class film : public video{
   
   virtual unsigned int get_num_chapiter() const {return num_chapiter;}
 
-  virtual int * gettab() const { return tab; }
+  virtual int const* gettab() const { return tab; }
 
   virtual void print(ostream & s) const {
     video::print(s);

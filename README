@@ -1,8 +1,38 @@
-Cours   : IGR201
-Contenu : TP2 Qt 
+Cours   : INF224
+Contenu : TP C++
 Auteur  : jie chen
 Date    : 10/10/2015
 
-  -Q1:
-   R1:
+-4e Etape: Photos et videos
+   Q1: Comme pour la fonction d'affichage, la fonction pour jouer l'objet doit être déclarée dans les classes Photo et Video et 
+       dans la classe de base afin de permettre un appel polymorphique sur la hiérarchie de classes. Cependant, contrairement à la fonction d'affichage, 
+       son implémentation ne fait pas sens au niveau de la classe de base. Comment appelle-t'on ce type de méthode et comment faut-il les déclarer ?
+   R1: C'est la méthode abstraite. Il a une spécification d'un concept dont la réalisation diffère selon les sous-classes. Il n'est pas implémentée dans le 
+       class basé, mais il doit être redéfinie et implémentée dans les sous-classes instanciables.
 
+
+   Q2: Modifier le Makefile si nécessaire (on rappelle qu'il ne faut pas mettre les .h dans SOURCES). Compiler, corriger les éventuelles erreurs et tester le programme. Si vous avez fait correctement ce qui précède, il ne sera plus possible d'instancer des objets de la classe de base. Pourquoi ?
+   R2: Il est classe abstraite dont au moins une méthode est abstraite. Donc, il a cette erreur 'cannot allocate an object of abstract type ‘’'.
+
+-5e Etape: Traitement générique (en utilisant le polymorphisme)
+ 
+  Q1: Quelle est la propriété caractéristique de l'orienté objet qui permet de faire cela ? Qu'est-il spécifiquement nécessaire de faire dans le cas du C++ ?
+      Quel est le type des éléments du tableau : est-ce que ce tableau contient les objets ou des pointeurs vers ces objets ? Pourquoi ? Comparer à Java.
+  
+  R1: Chaque objet va afficher ses attributs, c'est le polymorphisme. 
+      Les méthodes susceptibles d'être redéfinies doivent être virtuelles.
+      Le type des élément du tableau doit etre le type de base.
+      Il contient des pointeurs vers ces objets. Parce-que on ajout seulement l'address de chaque élément par '*'.  
+
+-6e étape. Films et tableaux
+  Q1: Que faut-il faire dans ce cas pour que l'objet puisse avoir plein contrôle sur ses données (ici, le tableau de durées du Film) ?
+       Indice : une partie du problème peut être réglée en en utilisant le mot clé const de manière adéquate.
+  R1: On peut utiliser le mot clé 'const' pour fix les valeur de ce tableau que on ne peut pas changer.
+
+-7e étape. Destruction et copie des objets
+  Q1: Contrairement à Java ou C#, C/C++ ne gère pas la mémoire dynamique automatiquement (*) : comme il n'y a pas de ramasse miettes, 
+      tout ce qui a été créé avec new doit être détruit avec delete sinon on aura des fuites mémoires.
+      Parmi les classes précédemment écrites quelles sont celles qu'il faut modifier et comment afin qu'il n'y ait pas de fuite mémoire quand on
+      détruit leurs instances ?
+  R1: 
+De même, la copie d'objets peut poser problème dans certains cas. Quelle(s) classe(s) sont concernées parmi celles déjà écrites et que faut-il faire ?

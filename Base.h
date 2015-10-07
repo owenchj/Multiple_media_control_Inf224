@@ -3,7 +3,7 @@
 
 // '1' for cout, '0' for sstream
 #ifndef COUT
-#define COUT 0
+#define COUT 1
 #endif
 
 
@@ -25,6 +25,8 @@ class Base{
   virtual string  get_file_name() const;
   virtual void    set(string obj_name,string date, string file_name);
   virtual void    print(ostream & s) const;
+  virtual void    play() const {};
+  //  virtual void    play() const = 0;
 };
    
 #endif
