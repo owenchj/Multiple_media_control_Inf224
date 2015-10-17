@@ -68,17 +68,33 @@ int main(int argc, char **argv){
  
 
   // test film
-  film *f = new film();  
-  // int *tab = new int[num_chapiter]; 
   // intialize array of duration
-  int const tab[num_chapiter] = {1,2,3,4,5}; 
-  //for(int i = 0; i < num_chapiter; i++)  tab[i] = i;
-
+  int tab[num_chapiter] = {1,2,3,4,5};  
+  int const *tab_const = NULL;
+  
+  film *f = new film("film","2105/10/6","../ressource/CHINA_IN_MOTION_2013.flv", 5400, (unsigned int)num_chapiter, tab);  
+  print_ss(f, ss);
+   
+  // to get the first address of the duration array in film, read-only
+  tab_const = f->gettab();
+  for(int i = 0; i < num_chapiter; i++)
+    cout << tab_const[i] << endl; 
+  
   // set film
+  tab[4] = 100;
   f->set("film","2105/10/6","../ressource/CHINA_IN_MOTION_2013.flv", 5400, (unsigned int)num_chapiter, tab);
   print_ss(f, ss);
   // f->play();
   
+  // test onject copy is ok
+  // film *f_copy=new film(*f);
+  film f_copy ; // only use full for a no-pointer object
+  f_copy = *f;
+  print_ss(&f_copy, ss);
+  // change f to see whether his copy will changes 
+  tab[4] = 6;
+  f->set("film","2105/10/6","../ressource/CHINA_IN_MOTION_2013.flv", 5400, (unsigned int)num_chapiter, tab);
+  print_ss(&f_copy, ss);
 
 
 
@@ -126,10 +142,11 @@ int main(int argc, char **argv){
   cout << china_group->size() << endl;
   china_group->print(ss, *china_group);
   
-  china_group->group_playMedia(*china_group);
+  //  china_group->group_playMedia(*china_group);
 
   delete v;
   delete p; 
+  delete []media_tab;
   delete f;
   
   delete [] p1;
