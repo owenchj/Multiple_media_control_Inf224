@@ -26,7 +26,7 @@ class group : public Base, public list<Base *>{
  }
 
   // play the group element
-  virtual void group_playMedia(group const &g) const{
+  virtual void play(group const &g) const{
     for (group::const_iterator it = g.begin(); it != g.end(); ++it)
       (**it).play();
   }

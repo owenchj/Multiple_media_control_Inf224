@@ -1,13 +1,10 @@
-#include"Base.h"
-#include"video.h"
-#include"photo.h"
-#include"film.h"
-#include"group.h"
+#include"manager.h"
 
-#include<iostream>
-#include<sstream>
-#include<string>
+#include <iostream>
+#include <sstream>
+#include <string>
 #include <list>
+#include <memory>
 
 using namespace std;
 
@@ -141,12 +138,49 @@ int main(int argc, char **argv){
   china_group->push_back(f1[0]);
   cout << china_group->size() << endl;
   china_group->print(ss, *china_group);
+  //  china_group->play(*china_group);
   
-  //  china_group->group_playMedia(*china_group);
+  // Step 9 : test smart pointer 
+  BasePtr v_s(new video("video","2105/10/6","../ressource/吾王,我愿永远做你的骑士.mp4", 149)); 
+  BasePtr p_s(new photo("photo","2105/10/6","../ressource/tiantan.jpg", 1600, 1200));
+  BasePtr f_s(new film("film","2105/10/6","../ressource/CHINA_IN_MOTION_2013.flv", 5400, (unsigned int)num_chapiter, tab));  
+  
+  // raw pointer
+  v_s->set("video","2105/10/20","../ressource/吾王,我愿永远做你的骑士.mp4"); 
+
+  print_ss(&(*v_s), ss);
+  print_ss(&(*p_s), ss);
+  print_ss(&(*f_s), ss);
+  // need not to delete the smart pointer  
+
+  // Step 10 : test for manager
+  manager m;
+
+  // add a video
+  BasePtr v_m;
+  m.add_video("saber","2105/10/20","../ressource/吾王,我愿永远做你的骑士.mp4", 149, v_m);
+  
+  BasePtr p_m;
+  m.add_photo("tiantan","2105/10/20","../ressource/tiantan.jpg", 1600, 1200, p_m);
+  
+  BasePtr f_m;
+  m.add_film("china","2105/10/20","../ressource/CHINA_IN_MOTION_2013.flv", 5400, (unsigned int)num_chapiter, tab, f_m);  
+  
+  BasePtr g_m;
+  m.add_group("china_beauty","2015/10/10", "group","video_group", g_m);
+  
+  
+  // find a element
+  BasePtr result;
+  m.find("china_beauty", result);
+  result->play();
+
+
+  
 
   delete v;
   delete p; 
-  delete []media_tab;
+  delete [] media_tab;
   delete f;
   
   delete [] p1;
