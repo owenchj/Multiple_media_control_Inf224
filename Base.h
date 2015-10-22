@@ -7,8 +7,9 @@
 #endif
 
 
-#include<string>
-#include<iostream>
+#include <string>
+#include <iostream>
+
 using namespace std;
 
 class Base{

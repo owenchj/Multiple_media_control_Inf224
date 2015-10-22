@@ -158,25 +158,47 @@ int main(int argc, char **argv){
 
   // add a video
   BasePtr v_m;
-  m.add_video("saber","2105/10/20","../ressource/吾王,我愿永远做你的骑士.mp4", 149, v_m);
+  m.add_video("video","2105/10/22","../ressource/吾王,我愿永远做你的骑士.mp4", 149, v_m);
   
   BasePtr p_m;
-  m.add_photo("tiantan","2105/10/20","../ressource/tiantan.jpg", 1600, 1200, p_m);
+  m.add_photo("photo","2105/10/20","../ressource/tiantan.jpg", 1600, 1200, p_m);
   
   BasePtr f_m;
-  m.add_film("china","2105/10/20","../ressource/CHINA_IN_MOTION_2013.flv", 5400, (unsigned int)num_chapiter, tab, f_m);  
+  m.add_film("film","2105/10/20","../ressource/CHINA_IN_MOTION_2013.flv", 5400, (unsigned int)num_chapiter, tab, f_m);  
   
-  BasePtr g_m;
-  m.add_group("china_beauty","2015/10/10", "group","video_group", g_m);
+  // BasePtr g_m;
+  // m.add_group("china_beauty","2015/10/10", "group","video_group", g_m);
   
-  
+   
+  // add a group
+  GroupPtr gg;
+  m.add_group("group","2015/10/22", "china_beauty","china", gg);
+  // add elements to this group
+  gg->push_back(&(*v_m));
+  gg->push_back(&(*p_m));
+  gg->push_back(&(*f_m));
+  gg->print(ss, *gg);
+
   // find a element
   BasePtr result;
-  m.find("china_beauty", result);
+  m.find_media("../ressource/tiantan.jpg", result);
   result->play();
-
-
   
+  // test delete a element
+  m.delete_media("../ressource/tiantan.jpg");
+  m.find_media("../ressource/tiantan.jpg", result);
+  if(result) result->play();
+
+    
+  GroupPtr find_g;
+  m.find_group("china_beauty", find_g);
+  m.delete_group("china_beauty");
+  m.find_group("china_beauty", find_g);
+
+
+
+    
+
 
   delete v;
   delete p; 

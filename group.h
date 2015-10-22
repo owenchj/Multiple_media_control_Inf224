@@ -19,14 +19,28 @@ class group : public Base, public list<Base *>{
   // print the group element
   virtual void print(ostream & s, group const &g) const{
     
+    std::cout <<"Groupname: "<<group_name<<std::endl;
     for (group::const_iterator it = g.begin(); it != g.end(); it++)
       (**it).print(s);
     //g->front()->print(s);
-    
- }
+  }
 
+  // find a eletement and delete
+  virtual bool find_delete(group &g, string file_name) const{
+    for (group::const_iterator it = g.begin(); it != g.end(); ++it){
+      if((**it).get_file_name() == file_name){
+	g.remove(*it);
+	return true;
+      }
+    }
+
+    return false;
+  }
+    
   // play the group element
   virtual void play(group const &g) const{
+    std::cout <<"play"<<std::endl;
+  
     for (group::const_iterator it = g.begin(); it != g.end(); ++it)
       (**it).play();
   }
