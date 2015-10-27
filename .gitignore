@@ -7,4 +7,5 @@ exec
 *.creator
 *.creator.user
 *.includes
-
+cliserv/client
+cliserv/server

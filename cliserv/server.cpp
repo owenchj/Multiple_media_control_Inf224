@@ -7,6 +7,9 @@
 #include <iostream>
 #include <string>
 #include "TCPServer.h"
+#include <sstream>  
+#include "manager.h"
+
 using namespace std;
 
 const int DEFAULT_PORT = 3331;
@@ -28,17 +31,36 @@ public:
   {
     // mettre cette variable à true si la commande modifie les donnees du programme
     bool changeData = false;
-    if (request == "delMedias" || request == "delGroups") changeData = true;
+
+    string command ="";
+    string obj_name ="";
+    stringstream ss;
+    
+    ss.str(request);
+    
+    ss>> command >> obj_name;
+
+    // if (request == "delMedias" || request == "delGroups") changeData = true;
+    
+    if(command == "find" && obj_name != "") {
+      response = "OK: " + request;
+      changeData = true;
+    }
+    else  response = "Wrong: please input [command ] + [FILE_NAME] ";
     
     // suivant le cas on bloque le verrou en mode WRITE ou en mode READ
     TCPServer::Lock lock(cnx, changeData);
-    
     cerr << "request: '" << request << "'" << endl;
+        
     
     // simule un traitement long (décommenter pour tester le verrou)
-    // if (changeData) sleep(10); else sleep(5);
+    //    if (changeData) sleep(10); else sleep(5);
     
-    response = "OK: " + request;
+    if (changeData){
+      
+      
+    }
+    
     cerr << "response: '" << response << "'" << endl;
     
     // renvoyer false pour clore la connexion avec le client

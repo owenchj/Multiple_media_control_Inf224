@@ -6,6 +6,8 @@
 # 
 ##########################################
 
+VPATH=./header
+
 #
 # Nom du programme
 #
@@ -47,8 +49,7 @@ LDFLAGS=
 # Librairies a utiliser
 # Example: LDLIBS = -L/usr/local/qt/lib -lqt
 #
-LDLIBS= -lpthread 
-
+LDLIBS= -lpthread  
 
 ##########################################
 #
